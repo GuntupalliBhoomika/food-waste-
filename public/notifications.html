@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Food Waste Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background-color: #011502;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ff9800;
+        }
+
+        .notifications-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .notification-card {
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .notification-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .notification-card.unread {
+            border-left: 4px solid #ff9800;
+        }
+
+        .notification-card.read {
+            opacity: 0.7;
+        }
+
+        .notification-card.important {
+            border-left: 4px solid #ff4444;
+        }
+
+        .notification-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .notification-title {
+            font-weight: 500;
+            color: #011502;
+        }
+
+        .notification-time {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .notification-content {
+            margin-top: 10px;
+            color: #444;
+        }
+
+        .notification-actions {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #ff9800;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #ff7b00;
+        }
+
+        .btn-secondary {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background-color: #bdbdbd;
+        }
+
+        .settings-form {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #011502;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        .form-group.checkbox {
+            display: flex;
+            align-items: center;
+        }
+
+        .form-group.checkbox input {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .error-message {
+            color: #ff4444;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .notifications-container {
+                margin: 20px;
+                padding: 15px;
+            }
+        }
+        footer {
+            background-color: #011502;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #ff9800;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Food Waste Platform</div>
+    <nav>
+        <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="marketplace.html">Marketplace</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="logout.html">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="notifications-container">
+    <h1>Notifications</h1>
+    
+    <div class="notification-card unread">
+        <div class="notification-header">
+            <div class="notification-title">New Donation Available</div>
+            <div class="notification-time">2 hours ago</div>
+        </div>
+        <div class="notification-content">
+            Fresh vegetables available at Green Market. Hurry up!
+        </div>
+        <div class="notification-actions">
+            <button class="btn btn-primary">View Details</button>
+            <button class="btn btn-secondary">Mark as Read</button>
+        </div>
+    </div>
+
+    <div class="notification-card read">
+        <div class="notification-header">
+            <div class="notification-title">Donation Claimed</div>
+            <div class="notification-time">1 day ago</div>
+        </div>
+        <div class="notification-content">
+            Your donation of 10kg rice has been claimed by Helping Hands NGO.
+        </div>
+    </div>
+
+    <div class="notification-card important">
+        <div class="notification-header">
+            <div class="notification-title">Important Update</div>
+            <div class="notification-time">3 days ago</div>
+        </div>
+        <div class="notification-content">
+            Please update your profile information for better matching.
+        </div>
+        <div class="notification-actions">
+            <button class="btn btn-primary">Update Profile</button>
+        </div>
+    </div>
+
+    <div class="settings-form">
+        <h2>Notification Settings</h2>
+        <form id="notificationSettings">
+            <div class="form-group">
+                <label for="notificationFrequency">Notification Frequency</label>
+                <select id="notificationFrequency" name="frequency">
+                    <option value="immediate">Immediate</option>
+                    <option value="daily">Daily Summary</option>
+                    <option value="weekly">Weekly Summary</option>
+                </select>
+            </div>
+
+            <div class="form-group checkbox">
+                <input type="checkbox" id="emailNotifications" name="emailNotifications">
+                <label for="emailNotifications">Receive Email Notifications</label>
+            </div>
+
+            <div class="form-group checkbox">
+                <input type="checkbox" id="smsNotifications" name="smsNotifications">
+                <label for="smsNotifications">Receive SMS Notifications</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save Settings</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2023 Food Waste Platform. All rights reserved.</p>
+    <p>
+        <a href="#privacy">Privacy Policy</a> | 
+        <a href="#terms">Terms and Conditions</a> | 
+        <a href="#help">Help Center</a>
+    </p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('notificationSettings');
+        const errorMessages = document.querySelectorAll('.error-message');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+
+            // Clear previous errors
+            errorMessages.forEach(msg => msg.style.display = 'none');
+
+            // Validate form
+            const frequency = document.getElementById('notificationFrequency').value;
+            const emailChecked = document.getElementById('emailNotifications').checked;
+            const smsChecked = document.getElementById('smsNotifications').checked;
+
+            if (!emailChecked && !smsChecked) {
+                document.querySelector('#notificationSettings .error-message').style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Submit form data
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+
+                fetch('/api/notification-settings', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Settings saved successfully!');
+                    } else {
+                        throw new Error('Failed to save settings');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while saving settings');
+                });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

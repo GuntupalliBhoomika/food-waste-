@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate Food - Food Waste Reduction Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #011502;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ff9800;
+        }
+
+        .hero {
+            background-image: url("https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_487/k%2Farchive%2F9bb4fd5a5be355fc3ff078b0dbfc6da58194e5e7");
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            background-size: cover;
+            background-position: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Form Styles */
+        .donation-form {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #011502;
+            outline: none;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .cta-button {
+            background-color: #011502;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .cta-button:hover {
+            background-color: #033a0a;
+            transform: translateY(-1px);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #011502;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #ff9800;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Food Waste Platform</div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="marketplace.html">Marketplace</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Donate Food</h1>
+        <p>Help reduce food waste by donating your surplus items.</p>
+    </section>
+
+    <div class="donation-form">
+        <form id="donationForm">
+            <div class="form-group">
+                <label for="listingId">Listing ID:</label>
+                <input type="text" id="listingId" name="listingId" required readonly>
+            </div>
+            
+            <div class="form-group">
+                <label for="donorId">Your Donor ID:</label>
+                <input type="text" id="donorId" name="donorId" required>
+            </div>
+
+            <div class="form-group">
+                <label for="notes">Additional Notes:</label>
+                <textarea id="notes" name="notes" rows="4"></textarea>
+            </div>
+
+            <button type="submit" class="cta-button">Submit Donation</button>
+        </form>
+        <div id="responseMessage" class="message"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Food Waste Platform. All rights reserved.</p>
+        <p>
+            <a href="#privacy">Privacy Policy</a> | 
+            <a href="#terms">Terms and Conditions</a> | 
+            <a href="#help">Help Center</a>
+        </p>
+    </footer>
+
+    <script>
+        // Get listing ID from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const listingId = urlParams.get('listingId');
+        
+        if (listingId) {
+            document.getElementById('listingId').value = listingId;
+        } else {
+            alert('No listing selected. Please go back and select a listing to donate.');
+            window.location.href = 'my-listings.html';
+        }
+
+        // Check for stored donor ID
+        const storedDonorId = localStorage.getItem('donorId');
+        if (storedDonorId) {
+            document.getElementById('donorId').value = storedDonorId;
+        }
+
+        document.getElementById('donationForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const listingId = document.getElementById('listingId').value;
+            const donorId = document.getElementById('donorId').value;
+            const notes = document.getElementById('notes').value;
+
+            try {
+                const response = await fetch(`/api/listings/${listingId}/donate`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        donorId,
+                        notes
+                    })
+                });
+
+                const result = await response.json();
+                
+                if (response.ok) {
+                    document.getElementById('responseMessage').textContent = 'Donation successful!';
+                    document.getElementById('responseMessage').className = 'message success';
+                } else {
+                    document.getElementById('responseMessage').textContent = result.message;
+                    document.getElementById('responseMessage').className = 'message error';
+                }
+            } catch (error) {
+                document.getElementById('responseMessage').textContent = 'An error occurred. Please try again.';
+                document.getElementById('responseMessage').className = 'message error';
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>

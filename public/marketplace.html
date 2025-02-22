@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace - Surplus Food Listings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #011502;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .cta-button {
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .cta-button:hover {
+            background-color: #ffba33;
+        }
+        .marketplace-section {
+            padding: 40px 20px;
+        }
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .filter-group {
+            display: flex;
+            align-items: center;
+        }
+        .filter-group label {
+            margin-right: 10px;
+        }
+        .category {
+            margin-bottom: 40px;
+        }
+        .food-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Three items in the first row */
+            gap: 20px; /* Space between items */
+        }
+        .food-item {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .food-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .food-item h3 {
+            margin: 10px 0;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        /* Cart Section */
+        .cart {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 300px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: none; /* Hidden by default */
+        }
+        .cart h2 {
+            margin-top: 0;
+        }
+        .cart-item {
+            margin-bottom: 10px;
+        }
+        .total-price {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .proceed-button {
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+        .proceed-button:hover {
+            background-color: #ffba33;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Food Waste Platform</div>
+    <nav>
+        <ul>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="howitworks.html">How It Works</a></li>
+            <li><a href="marketplace.html">Marketplace</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+    <button class="cta-button" onclick="toggleCart()">View Cart</button>
+</header>
+
+<section class="marketplace-section">
+    <h1>Marketplace</h1>
+    
+    <div class="filters">
+        <div class="filter-group">
+            <label for="food-type">Type of Food:</label>
+            <select id="food-type" onchange="filterItems()">
+                <option value=" all">All</option>
+                <option value="fruits">Fruits</option>
+                <option value="vegetables">Vegetables</option>
+                <option value="dairy">Dairy</option>
+                <option value="meat">Meat</option>
+                <option value="grains">Grains</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="expiration-date">Expiration Date:</label>
+            <input type="date" id="expiration-date">
+        </div>
+        <div class="filter-group">
+            <label for="price">Max Price:</label>
+            <input type="number" id="price" placeholder="Price">
+        </div>
+        <div class="filter-group">
+            <button class="cta-button">Search</button>
+        </div>
+    </div>
+
+    <!-- Fruits Category -->
+    <div class="category" data-category="fruits">
+        <h2>Fruits</h2>
+        <div class="food-list">
+            <div class="food-item">
+                <img src="https://media.self.com/photos/5b6b0b0cbb7f036f7f5cbcfa/4:3/w_2560%2Cc_limit/apples.jpg" alt="Fresh Apples">
+                <h3>Fresh Apples</h3>
+                <p>Price: $2.00</p>
+                <p>Expiration Date: 2025-05-01</p>
+                <label for="quantity-apples">Quantity:</label>
+                <input type="number" id="quantity-apples" value="1" min="1" style="width: 60px;">
+                <button class="cta-button" onclick="addToCart('Fresh Apples', 2.00, document.getElementById('quantity-apples').value)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://1.bp.blogspot.com/-TlmubMUHIvk/XtkyEbR9V7I/AAAAAAAANb0/GB_l0A_pJoUMy88t00rqhAhAf108aYJugCLcBGAsYHQ/s1600/Wholesale%2BBananas%2Bin%2Bseawoods%252C%2Bripe-unripe-bananas.jpg" alt="Bananas">
+                <h3>Bananas</h3>
+                <p>Price: $1.00</p>
+                <p>Expiration Date: 2025-05-05</p>
+                <label for="quantity-bananas">Quantity:</label>
+                <input type="number" id="quantity-bananas" value="1" min="1" style="width: 60px;">
+                <button class="cta-button" onclick="addToCart('Bananas', 1.00, document.getElementById('quantity-bananas').value)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://www.bhg.com/thmb/8ql9jldzLGPruyLpmOWWWmR3UJQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/types-of-oranges-4d6a86c11fe14668ad798774e16697f8.jpg" alt="Oranges">
+                <h3>Oranges</h3>
+                <p>Price: $1.50</p>
+                <p>Expiration Date: 2025-05-10</p>
+                <label for="quantity-oranges">Quantity:</label>
+                <input type="number" id="quantity-oranges" value="1" min="1" style="width: 60px;">
+                <button class="cta-button" onclick="addToCart('Oranges', 1.50, document.getElementById('quantity-oranges').value)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://1.bp.blogspot.com/-v61jNyBTx0s/VVx0ETJdQ4I/AAAAAAAAAYg/tUkG4eDUu8o/s1600/grapes.jpg" alt="Grapes">
+                <h3>Grapes</h3>
+                <p>Price: $3.00</p>
+                <p>Expiration Date: 2025-05-15</p>
+                <label for="quantity-grapes">Quantity:</label>
+                <input type="number" id="quantity-grapes" value="1" min="1" style="width: 60px;">
+                <button class="cta-button" onclick="addToCart('Grapes', 3.00, document.getElementById('quantity-grapes').value)">Add to Cart</button>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Vegetables Category -->
+    <div class="category" data-category="vegetables">
+        <h2>Vegetables</h2>
+        <div class="food-list">
+            <div class="food-item">
+                <img src="https://cdn.foodaciously.com/static/stories/92b1a695-549f-4844-89e4-d14bbd83635b/carrots-benefits-and-recipes-ca66bf9e088c7051d918b11a644ca389-2560-q60.jpg" alt="Carrots">
+                <h3>Carrots</h3>
+                <p>Price: $1.20</p>
+                <p>Expiration Date: 2025-06-01</p>
+                <label for="quantity-carrots">Quantity:</label>
+                <input type="number" id="quantity-carrots" value="1" min="1" style="width: 60px;">
+                <button class="cta-button" onclick="addToCart('Carrots', 1.20, document.getElementById('quantity-carrots').value)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://www.tastingtable.com/img/gallery/the-reason-youll-never-find-wild-broccoli/l-intro-1668012960.jpg" alt="Broccoli">
+                <h3>Broccoli</h3>
+                <p>Price: $1.50</p>
+                <p>Expiration Date: 2025-06-05</p>
+                <label for="quantity-broccoli">Quantity:</label>
+                <input type="number" id="quantity-broccoli" value="1" min="1" style="width: 60px;">
+                <button class="cta-button" onclick="addToCart('Broccoli', 1.50, document.getElementById('quantity-broccoli').value)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://www.farmflavor.com/wp-content/uploads/2020/05/iStock-916931074-2-scaled.jpg" alt="Spinach">
+                <h3>Spinach</h3>
+                <p>Price: $1.80</p>
+                <p>Expiration Date: 2025-06-10</p>
+                <label for="quantity-spinach">Quantity:</label>
+                <input type="number" id="quantity-spinach" value="1" min="1" style="width: 60px;">
+                <button class="cta-button" onclick="addToCart('Spinach', 1.80, document.getElementById('quantity-spinach').value)">Add to Cart</button>
+            </div>
+            
+        </div>
+        <div class="food-list">
+            <div class="food-item">
+                <img src="https://gardenerspath.com/wp-content/uploads/2021/05/Types-of-Cucumbers-FB.jpg" alt="Cucumbers">
+                <h3>Cucumbers</h3>
+                <p>Price: $1.00</p>
+                <p>Expiration Date: 2025-06-20</p>
+                <label for="quantity-cucumbers">Quantity:</label>
+                <input type="number" id="quantity-cucumbers" value="1" min="1" style="width: 60px;">
+                <button class="cta-button" onclick="addToCart('Cucumbers', 1.00, document.getElementById('quantity-cucumbers').value)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- Grains Category -->
+    <div class="category" data-category="grains">
+        <h2>Grains</h2>
+        <div class="food-list">
+            <div class="food-item">
+                <img src="https://5.imimg.com/data5/VQ/CL/JN/SELLER-51987316/organic-basmati-rice.jpg" alt="Rice">
+                <h3>Rice</h3>
+                <p>Price: $1.00</p>
+                <p>Expiration Date: 2025-08-01</p>
+                <label for="quantity-rice">Quantity:</label>
+                <input type="number" id="quantity-rice" value="1" min="1" style="width: 60px;">
+                <button class="cta-button" onclick="addToCart('Rice', 1.00, document.getElementById('quantity-rice').value)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://thumbs.dreamstime.com/b/rolled-oats-oat-flakes-bowl-concrete-background-closeup-view-healthy-eating-lifestyle-dieting-weight-loss-food-145529955.jpg" alt="Oats">
+                <h3>Oats</h3>
+                <p>Price: $1.50</p>
+                <p>Expiration Date: 2025-08-10</p>
+                <label for="quantity-oats">Quantity:</label>
+                <input type="number" id="quantity-oats" value="1" min="1" style="width: 60px;">
+                <button class="cta-button" onclick="addToCart('Oats', 1.50, document.getElementById('quantity-oats').value)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="http://2.bp.blogspot.com/-iZmy7Okm4zg/U1Zsv22TkCI/AAAAAAAABnc/Uo2-fGV6EWk/s1600/quinoa.jpg" alt="Quinoa">
+                <h3>Quinoa</h3>
+                <p>Price: $2.00</p>
+                <p>Expiration Date: 2025-08-15</p>
+                <label for="quantity-quinoa">Quantity:</label>
+                <input type="number" id="quantity-quinoa" value="1" min="1" style="width: 60px;">
+                <button class="cta-button" onclick="addToCart('Quinoa', 2.00, document.getElementById('quantity-quinoa').value)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://tse2.mm.bing.net/th?id=OIP._-FSo5s1Fw0XkMvgZViSIAHaHa&pid=Api&P=0&h=180" alt="Barley">
+                <h3>Barley</h3>
+                <p>Price: $1.80</p>
+                <p>Expiration Date: 2025-08-20</p>
+                <label for="quantity-barley">Quantity:</label>
+                <input type="number" id="quantity-barley" value="1" min="1" style="width: 60px;">
+                <button class="cta-button" onclick="addToCart('Barley', 1.80, document.getElementById('quantity-barley').value)">Add to Cart</button>
+            </div>
+        </div>
+        
+    </div>
+
+</section>
+
+<!-- Cart Section -->
+<div class="cart" id="cart" style="display: none;">
+    <h2>Cart</h2>
+    <div id="cartItems"></div>
+    <div class="total-price" id="totalPrice">Total: $0.00</div>
+    <button class="proceed-button" onclick="proceedToPayment()">Proceed to Payment</button>
+</div>
+
+<footer>
+    <p>&copy; 2025 Food Waste Platform. All rights reserved.</p>
+</footer>
+<script>
+    const cart = [];
+
+    function addToCart(itemName, itemPrice, quantity) {
+        const totalPrice = itemPrice * quantity;
+        cart.push({ 
+            name: itemName, 
+            price: itemPrice, 
+            quantity: parseInt(quantity), 
+            total: totalPrice 
+        });
+        updateCartDisplay();
+        showNotification(`${quantity} x ${itemName} added to cart`);
+    }
+
+    function updateCartDisplay() {
+        const cartItemsDiv = document.getElementById('cartItems');
+        cartItemsDiv.innerHTML = '';
+        let total = 0;
+
+        cart.forEach((item, index) => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'cart-item';
+            itemDiv.innerHTML = `
+                <div>${item.quantity} x ${item.name}</div>
+                <div>$${item.total.toFixed(2)}</div>
+                <button onclick="removeFromCart(${index})">Remove</button>
+            `;
+            cartItemsDiv.appendChild(itemDiv);
+            total += item.total;
+        });
+
+        document.getElementById('totalPrice').innerText = `Total: $${total.toFixed(2)}`;
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCartDisplay();
+        showNotification('Item removed from cart');
+    }
+
+    function clearCart() {
+        cart.length = 0;
+        updateCartDisplay();
+        showNotification('Cart cleared');
+    }
+
+    function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 3000);
+    }
+
+    function toggleCart() {
+        const cartDiv = document.getElementById('cart');
+        cartDiv.style.display = cartDiv.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function proceedToPayment() {
+        if (cart.length === 0) {
+            showNotification('Your cart is empty!');
+            return;
+        }
+        window.location.href = 'payment.html';
+    }
+
+    function filterItems() {
+        const selectedType = document.getElementById('food-type').value;
+        const categories = document.querySelectorAll('.category');
+
+        categories.forEach(category => {
+            if (selectedType === 'all' || category.getAttribute('data-category') === selectedType) {
+                category.style.display = 'block';
+            } else {
+                category.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

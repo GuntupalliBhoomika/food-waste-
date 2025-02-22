@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Waste Reduction Platform</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #011502;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .cta-button {
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .cta-button:hover {
+            background-color: #ffba33;
+        }
+        .hero {
+            background-image: url('https://filaantro.org/admin/images/uploads/1/109/fundraiser/fundraisers/fdrdpimg_16552008551.jpg'); /* Replace with your image */
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .how-it-works, .featured-listings, .benefits, .testimonials {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .steps {
+            display: flex;
+            justify-content: space-around;
+        }
+        .step {
+            width: 30%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        .step:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 255, 0.5);
+        }
+        .featured-items {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .item {
+            width: 30%;
+            background-color: #fff;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Food Waste Platform</div>
+    <nav>
+        <ul>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="howitworks.html">How It Works</a></li>
+            <li><a href="login.html">Marketplace</a></li>
+            <li><a href="login.html">Login/Register</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+    <a href="login.html"><button class="cta-button">Join Us</button></a>
+</header>
+
+<section class="hero">
+    <h1>Join the Fight Against Food Waste</h1>
+    <p>Connect with local restaurants and grocery stores to save surplus food and make a difference.</p>
+    <a href="explore.html" > <button class="cta-button">Explore Now</button></a>
+</section>
+
+<section class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+        <div class="step">
+            <h3>Find Surplus Food</h3>
+            <p>Browse listings of surplus food available in your area.</p>
+        </div>
+        <div class="step">
+            <h3>Get Discounts or Donate</h3>
+            <p>Purchase at discounted prices or donate to those in need.</p>
+        </div>
+        <div class="step">
+            <h3>Reduce Food Waste</h3>
+            <p>Help minimize food waste and support your community.</p>
+        </div>
+    </div>
+    <button class="cta-button">Learn More</button>
+</section>
+
+<section class="featured-listings">
+    <h2>Today's Surplus Food Offers</h2>
+    <div class="featured-items">
+        <div class = "step">
+            
+                <h3>Fresh Apples</h3>
+                <p>Discounted Price: $2.00 per bag</p>
+                <button class="cta-button">View More</button>
+        </div>
+        <div class = "step">
+                <h3>Bread Loaves</h3>
+                <p>Discounted Price: $1.50 each</p>
+                <button class="cta-button">View More</button>
+        </div>
+        <div class = "step">
+                <h3>Organic Carrots</h3>
+                <p>Discounted Price: $1.00 per bunch</p>
+                <button class="cta-button">View More</button>
+        </div>
+    </div>
+</section>
+
+<section class="benefits">
+    <h2>Why Choose Us?</h2>
+    <div class="steps">
+        <div class="step">
+            <h3>Save Money</h3>
+            <p>Get discounts on surplus food items.</p>
+        </div>
+        <div class="step">
+            <h3>Help the Environment</h3>
+            <p>Reduce food waste in your community.</p>
+        </div>
+        <div class="step">
+            <h3>Support Local Businesses</h3>
+            <p>Connect with nearby restaurants and stores.</p>
+        </div>
+        <div class="step">
+            <h3>Easy to Use</h3>
+            <p>User-friendly platform with automated alerts.</p>
+        </div>
+    </div>
+</section>
+
+<section class="testimonials">
+    <h2>What Our Users Say</h2>
+    <div class="steps">
+        <div class="step">
+            <p>"This platform has helped us reduce our food waste significantly!" - Local Restaurant Owner</p>
+        </div>
+        <div class="step">
+            <p>"I love getting fresh produce at a discount while helping the environment!" - Happy Consumer</p>
+        </div>
+        <div class="step">
+            <p>"A fantastic way to support local businesses and reduce waste!" - Community Member</p>
+        </div>
+    </div>
+</section>
+<section class="call-to-action">
+    <h2>Ready to Make a Difference?</h2>
+    <button class="cta-button">Join Us Today</button>
+</section>
+
+<footer>
+    <p>&copy; 2025 Food Waste Platform. All rights reserved.</p>
+    <p>
+        <a href="#privacy" style="color: white;">Privacy Policy</a> | 
+        <a href="#terms" style="color: white;">Terms and Conditions</a> | 
+        <a href="#help" style="color: white;">Help Center</a>
+    </p>
+    <div>
+        <a href="https://facebook.com" style="color: white;">Facebook</a> | 
+        <a href="https://twitter.com" style="color: white;">Twitter</a> | 
+        <a href="https://instagram.com" style="color: white;">Instagram</a>
+    </div>
+</footer>
+
+</body>
+</html>

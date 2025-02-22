@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout - Food Waste Reduction Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .logout-container {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .message {
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+        .redirect-message {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+        .confirm-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+        .cancel-btn {
+            background-color: #6c757d;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="logout-container">
+        <div class="message">You have been successfully logged out.</div>
+        <div class="redirect-message">Redirecting to login page in <span id="countdown">5</span> seconds...</div>
+        <div class="buttons">
+            <button class="confirm-btn" onclick="proceedLogout()">Logout</button>
+            <button class="cancel-btn" onclick="cancelLogout()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        let countdown = 5;
+        let countdownInterval;
+        
+        function startCountdown() {
+            const countdownElement = document.getElementById('countdown');
+            countdownInterval = setInterval(() => {
+                countdown--;
+                countdownElement.textContent = countdown;
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    proceedLogout();
+                }
+            }, 1000);
+        }
+        
+        function proceedLogout() {
+            clearInterval(countdownInterval);
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = 'login.html';
+        }
+        
+        function cancelLogout() {
+            clearInterval(countdownInterval);
+            window.location.href = 'dashboard.html';
+        }
+        
+        startCountdown();
+    </script>
+</body>
+</html>

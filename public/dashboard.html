@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - Food Waste Reduction Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #011502;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .dashboard-container {
+            display: flex;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+        }
+        .sidebar a:hover {
+            background-color: #444;
+            padding: 5px;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Food Waste Platform</div>
+    <nav>
+        <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="marketplace.html">Marketplace</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="logout.html">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="dashboard-container">
+    <div class="sidebar">
+        <h3>Quick Links</h3>
+        <a href="my-listings.html">My Listings</a>
+        <a href="analytics.html">Analytics</a>
+        <a href="notifications.html">Notifications</a>
+        <a href="add-listing.html">Add New Listing</a>
+    </div>
+
+    <div class="main-content">
+        <h2>Welcome, User!</h2>
+        <div class="card">
+            <h3>Overview</h3>
+            <p>Total Food Saved: <strong>500 kg</strong></p>
+            <p>Total Users: <strong>150</strong></p>
+            <p>Active Listings: <strong>20</strong></p>
+        </div>
+
+        <div class="card">
+            <h3>Recent Activity</h3>
+            <ul>
+                <li>New listing added: Fresh Apples</li>
+                <li>Donation made: 10 kg of Bread</li>
+                <li>New user registered: John Doe</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Alerts/Notifications</h3>
+            <ul>
+                <li>Fresh Apples will expire in 2 days!</li>
+                <li>New discount available on Bread Loaves!</li>
+                <li>Reminder: Update your profile information.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Quick Actions</h3>
+            <button class="cta-button" onclick="location.href='add-listing.html'">Add New Listing</button>
+            <button class="cta-button" onclick="location.href='marketplace.html'">View Marketplace</button>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2023 Food Waste Platform. All rights reserved.</p>
+    <p>
+        <a href="#privacy" style="color: white;">Privacy Policy</a> | 
+        <a href="#terms" style="color: white;">Terms and Conditions</a> | 
+        <a href="#help" style="color: white;">Help Center</a>
+    </p>
+    <div>
+        <a href="https://facebook.com" style="color: white;">Facebook</a> | 
+        <a href="https://twitter.com" style="color: white;">Twitter</a> | 
+        <a href="https://instagram.com" style="color: white;">Instagram</a>
+    </div>
+</footer>
+
+</body>
+</html>

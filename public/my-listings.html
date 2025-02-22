@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Listings - Food Waste Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background-color: #011502;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ff9800;
+        }
+
+        .hero {
+            background-image: url("https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_487/k%2Farchive%2F9bb4fd5a5be355fc3ff078b0dbfc6da58194e5e7");
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            background-size: cover;
+            background-position: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .listings-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .listings-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .listings-table th,
+        .listings-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .listings-table th {
+            background-color: #f5f5f5;
+            font-weight: 500;
+        }
+
+        .listings-table tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .listings-table input {
+            width: 90%;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .listings-table tr.editing {
+            background-color: #fff3e0;
+        }
+
+        .status {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status.available {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .status.claimed {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #ff9800;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #ff7b00;
+        }
+
+        .btn-secondary {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background-color: #bdbdbd;
+        }
+
+        .btn-danger {
+            background-color: #ff4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #cc0000;
+        }
+
+        footer {
+            background-color: #011502;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #ff9800;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .listings-container {
+                margin: 20px;
+                padding: 15px;
+            }
+            
+            .listings-table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Food Waste Platform</div>
+    <nav>
+        <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="marketplace.html">Marketplace</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="logout.html">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>My Listings</h1>
+    <p>Manage and track your food donations here.</p>
+</section>
+
+<div class="listings-container">
+    <div style="text-align: right; margin-bottom: 20px;">
+        <a href="add-listing.html" class="btn btn-primary" style="padding: 12px 24px;">Add New Listing</a>
+    </div>
+    <table class="listings-table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Location</th>
+                <th>Expiration</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="listingsGrid">
+            <!-- Listings will be dynamically inserted here -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const userId = sessionStorage.getItem('userId');
+        if (!userId) {
+            window.location.href = 'login.html';
+            return;
+        }
+
+        fetch(`/api/listings?owner=${userId}`)
+            .then(response => response.json())
+            .then(listings => {
+                const listingsGrid = document.getElementById('listingsGrid');
+                listingsGrid.innerHTML = listings.map(listing => `
+                    <tr data-id="${listing._id}">
+                        <td>${listing.title}</td>
+                        <td>${listing.quantity}</td>
+                        <td>${listing.location}</td>
+                        <td>${new Date(listing.expirationDate).toLocaleDateString()}</td>
+                        <td><span class="status ${listing.status}">${listing.status}</span></td>
+                        <td>
+                            <button class="btn btn-secondary" onclick="toggleEdit('${listing._id}')">Edit</button>
+                            <button class="btn btn-danger" onclick="deleteListing('${listing._id}')">Delete</button>
+                            <button class="btn btn-primary" onclick="window.location.href='donate.html?listingId=${listing._id}'">Donate</button>
+                        </td>
+                    </tr>
+                `).join('');
+            })
+            .catch(error => {
+                console.error('Error fetching listings:', error);
+            });
+    });
+
+    function toggleEdit(id) {
+        const row = document.querySelector(`tr[data-id="${id}"]`);
+        if (row.classList.contains('editing')) {
+            // Save changes
+            const updatedData = {
+                title: row.querySelector('.edit-title').value,
+                quantity: row.querySelector('.edit-quantity').value,
+                location: row.querySelector('.edit-location').value,
+                expirationDate: row.querySelector('.edit-expiration').value
+            };
+            
+            fetch(`/api/listings/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert('Failed to update listing');
+                }
+            })
+            .catch(error => {
+                console.error('Error updating listing:', error);
+                alert('An error occurred while updating the listing');
+            });
+        } else {
+            // Switch to edit mode
+            const cells = row.querySelectorAll('td:not(:last-child)');
+            const originalValues = Array.from(cells).map(cell => cell.innerHTML);
+            
+            cells[0].innerHTML = `<input class="edit-title" value="${originalValues[0]}">`;
+            cells[1].innerHTML = `<input type="number" class="edit-quantity" value="${originalValues[1]}">`;
+            cells[2].innerHTML = `<input class="edit-location" value="${originalValues[2]}">`;
+            cells[3].innerHTML = `<input type="date" class="edit-expiration" value="${originalValues[3]}">`;
+            
+            row.classList.add('editing');
+        }
+    }
+
+    function deleteListing(id) {
+        if (confirm('Are you sure you want to delete this listing?')) {
+            fetch(`/api/listings/${id}`, {
+                method: 'DELETE'
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert('Failed to delete listing');
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting listing:', error);
+                alert('An error occurred while deleting the listing');
+            });
+        }
+    }
+</script>
+
+<footer>
+    <p>&copy; 2023 Food Waste Platform. All rights reserved.</p>
+    <p>
+        <a href="#privacy">Privacy Policy</a> | 
+        <a href="#terms">Terms and Conditions</a> | 
+        <a href="#help">Help Center</a>
+    </p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Listing - Food Waste Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background-color: #011502;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ff9800;
+        }
+
+        .add-listing-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #011502;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 90%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-group.file-upload {
+            border: 2px dashed #ddd;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-group.file-upload:hover {
+            border-color: #ff9800;
+        }
+
+        .submit-btn {
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #ff7b00;
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 5px;
+            color: white;
+            display: none;
+            z-index: 1000;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .notification.success {
+            background-color: #4CAF50;
+        }
+
+        .notification.error {
+            background-color: #f44336;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        @media (max-width: 768px) {
+            .add-listing-container {
+                margin: 20px;
+                padding: 15px;
+            }
+        }
+        footer {
+            background-color: #011502;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #ff9800;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Food Waste Platform</div>
+    <nav>
+        <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="marketplace.html">Marketplace</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="logout.html">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="add-listing-container">
+    <form id="listingForm">
+        <div class="form-group">
+            <label for="itemName">Item Name</label>
+            <input type="text" id="itemName" name="itemName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" name="quantity" min="1" required>
+        </div>
+
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" required>
+        </div>
+
+        <div class="form-group">
+            <label for="expirationDate">Expiration Date</label>
+            <input type="date" id="expirationDate" name="expirationDate" required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" required></textarea>
+        </div>
+
+        <div class="form-group file-upload">
+            <label for="imageUpload">Upload Images</label>
+            <input type="file" id="imageUpload" name="imageUpload" accept="image/*" multiple>
+        </div>
+
+        <button type="submit" class="submit-btn">Add Listing</button>
+    </form>
+</div>
+
+<footer>
+    <p>&copy; 2023 Food Waste Platform. All rights reserved.</p>
+    <p>
+        <a href="#privacy">Privacy Policy</a> | 
+        <a href="#terms">Terms and Conditions</a> | 
+        <a href="#help">Help Center</a>
+    </p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('listingForm');
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        document.body.appendChild(notification);
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(form);
+            const data = {
+                title: formData.get('itemName'),
+                quantity: formData.get('quantity'),
+                location: formData.get('location'),
+                expirationDate: formData.get('expirationDate'),
+                description: formData.get('description'),
+                owner: sessionStorage.getItem('userId'),
+                images: formData.getAll('imageUpload')
+            };
+
+            // Validate inputs
+            if (!validateForm(data)) {
+                showNotification('Please fill in all required fields correctly', 'error');
+                return;
+            }
+
+            // Submit to API
+            try {
+                const response = await fetch('/api/listings', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                
+                if (response.ok) {
+                    showNotification('Listing added successfully!', 'success');
+                    setTimeout(() => {
+                        window.location.href = 'my-listings.html';
+                    }, 1500);
+                } else {
+                    let errorMessage = 'Failed to add listing';
+                    if (result.errors) {
+                        errorMessage = Object.values(result.errors).join('\n');
+                    } else if (result.message) {
+                        errorMessage = result.message;
+                    }
+                    showNotification(errorMessage, 'error');
+                }
+            } catch (error) {
+                let errorMessage = 'An error occurred. Please try again.';
+                if (error.response && error.response.data) {
+                    errorMessage = error.response.data.message || errorMessage;
+                }
+                showNotification(errorMessage, 'error');
+                console.error('Error adding listing:', error);
+            }
+        });
+
+        function validateForm(data) {
+            const currentDate = new Date().toISOString().split('T')[0];
+            const errors = [];
+            
+            if (!data.title || data.title.trim() === '') {
+                errors.push('Item name is required');
+            }
+            if (!data.quantity || data.quantity <= 0) {
+                errors.push('Quantity must be greater than 0');
+            }
+            if (!data.location || data.location.trim() === '') {
+                errors.push('Location is required');
+            }
+            if (!data.expirationDate || data.expirationDate < currentDate) {
+                errors.push('Expiration date must be in the future');
+            }
+            if (!data.description || data.description.trim() === '') {
+                errors.push('Description is required');
+            }
+            
+            if (errors.length > 0) {
+                showNotification(errors.join('\n'), 'error');
+                return false;
+            }
+            return true;
+        }
+
+        function showNotification(message, type = 'info') {
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+    });
+</script>
+
+</body>
+</html>

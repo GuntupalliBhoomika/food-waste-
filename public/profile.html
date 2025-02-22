@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Food Waste Reduction Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #011502;
+            margin-bottom: 30px;
+        }
+        .profile-section {
+            margin-bottom: 30px;
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .profile-picture {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+            border: 3px solid #ff9800;
+        }
+        .profile-info {
+            flex-grow: 1;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+        button {
+            padding: 12px 30px;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background-color: #ff8000;
+            transform: translateY(-2px);
+        }
+        .success-message {
+            color: #28a745;
+            margin-top: 10px;
+            display: none;
+        }
+        .error-message {
+            color: #dc3545;
+            margin-top: 10px;
+            display: none;
+        }
+        .section-title {
+            color: #011502;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="profile-container">
+    <h1>Your Profile</h1>
+    
+    <div class="profile-section">
+        <div class="profile-header">
+            <img src="https://img.freepik.com/free-photo/man-wearing-t-shirt-gesturing_23-2149393650.jpg" alt="Profile Picture" class="profile-picture">
+            <div class="profile-info">
+                <h2>John Doe</h2>
+                <p>Member since: January 2023</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile-section">
+        <h3 class="section-title">Personal Information</h3>
+        <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" value="John Doe">
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" value="john.doe@example.com">
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" value="+1 234 567 890">
+        </div>
+        <button onclick="updateProfile()">Update Profile</button>
+        <div class="success-message" id="profileSuccess">Profile updated successfully!</div>
+        <div class="error-message" id="profileError"></div>
+    </div>
+
+    <div class="profile-section">
+        <h3 class="section-title">Change Password</h3>
+        <div class="form-group">
+            <label for="currentPassword">Current Password</label>
+            <input type="password" id="currentPassword">
+        </div>
+        <div class="form-group">
+            <label for="newPassword">New Password</label>
+            <input type="password" id="newPassword">
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword">Confirm New Password</label>
+            <input type="password" id="confirmPassword">
+        </div>
+        <button onclick="changePassword()">Change Password</button>
+        <div class="success-message" id="passwordSuccess">Password changed successfully!</div>
+        <div class="error-message" id="passwordError"></div>
+    </div>
+
+    <div class="profile-section">
+        <h3 class="section-title">Account Settings</h3>
+        <button onclick="confirmDeleteAccount()" style="background-color: #dc3545;">Delete Account</button>
+    </div>
+</div>
+
+<script>
+    function updateProfile() {
+        const successMessage = document.getElementById('profileSuccess');
+        const errorMessage = document.getElementById('profileError');
+        
+        // Simulate profile update
+        setTimeout(() => {
+            successMessage.style.display = 'block';
+            errorMessage.style.display = 'none';
+        }, 1000);
+    }
+
+    function changePassword() {
+        const successMessage = document.getElementById('passwordSuccess');
+        const errorMessage = document.getElementById('passwordError');
+        
+        // Simulate password change
+        setTimeout(() => {
+            successMessage.style.display = 'block';
+            errorMessage.style.display = 'none';
+        }, 1000);
+    }
+
+    function confirmDeleteAccount() {
+        if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+            // Simulate account deletion
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 1000);
+        }
+    }
+</script>
+
+</body>
+</html>

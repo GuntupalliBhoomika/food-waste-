@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore NGOs and Their Work</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #011502;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .cta-button {
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .cta-button:hover {
+            background-color: #ffba33;
+        }
+        .ngo-section {
+            padding: 40px 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        .ngo-list, .ngo-details {
+            width: 45%;
+        }
+        .ngo-list h2, .ngo-details h2 {
+            color: #011502;
+        }
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .gallery {
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+        .gallery-item {
+            width: 100%;
+            height: 100%;
+            margin: 0 10px;
+            text-align: center;
+            display: none;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .gallery-item p {
+            color: #011502;
+        }
+        .arrow-button {
+            position: absolute;
+            top: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+        .arrow-button-left {
+            left: 10px;
+        }
+        .arrow-button-right {
+            right: 10px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Food Waste Platform</div>
+    <nav>
+        <ul>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="howitworks.html">How It Works</a></li>
+            <li><a href="marketplace.html">Marketplace</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+    <a href="joinus.html" ><button class="cta-button">Join Us</button></a>
+</header>
+
+<section class="ngo-section">
+    <!-- Left Side: NGO List and Programs -->
+    <div class="ngo-list">
+        <h2>Our Partner NGOs</h2>
+        <div class="gallery-container">
+            <div class="gallery" id="ngo-gallery">
+                <div class="gallery-item" id="item-1">
+                    
+                    <img src="https://www.bookeventz.com/blog/wp-content/uploads/2021/02/Feeding-India-Donate-Food.png" alt="NGO 1">
+                    <p>Food Waste Reduction Alliance</p>
+                </div>
+                <div class="gallery-item" id="item-2">
+                    <img src="https://www.paramveertrust.com/images/photos/01.jpg" alt="NGO 2">
+                    <p>ReFED</p>
+                </div>
+                <div class="gallery-item" id="item-3">
+                    <img src="https://www.financialexpress.com/wp-content/uploads/2018/12/food-1.jpg" alt="NGO 3">
+                    <p>Feeding America</p>
+                </div>
+                <div class="gallery-item" id="item-4">
+                    <img src="https://nofoodwaste.org/assets/img/donation/6.jpeg" alt="NGO 4">
+                    <p>City Harvest</p>
+                </div>
+                <div class="gallery-item" id="item-5">
+                    <img src="https://nofoodwaste.org/assets/img/home_carousel/home_banner_1.jpg" alt="NGO 5">
+                    <p>Waste Not</p>
+                </div>
+                <div class="gallery-item" id="item-6">
+                    <img src="https://us.amma.org/sites/default/files/styles/group_main/public/slides/hunger-slide1.jpg?itok=peEfpz-A" alt="NGO 6">
+                    <p>For The Smiles</p>
+                </div>
+                <div class="gallery-item" id="item-7">
+                    <img src="https://www.akshayapatra.org/includefiles/photos/824.jpg" alt="NGO 7">
+                    <p>Feeding India</p>
+                </div>
+            </div>
+            <button class="arrow-button arrow-button-left" onclick="scrollGallery('left')">←</button>
+            <button class="arrow-button arrow-button-right" onclick="scrollGallery('right')">→</button>
+        </div>
+    </div>
+
+    <!-- Right Side: Detailed Information About NGOs -->
+    <div class="ngo-details">
+        <h2>About Our Partner NGOs</h2>
+
+        <div class="ngo-item">
+            <h3>Food Waste Reduction Alliance</h3>
+            <p>We are proud to be partnered with Food Waste Reduction Alliance, who work tirelessly to distribute surplus food to local communities and reduce hunger. Their programs focus on food recovery, preparation, and redistribution to food banks and shelters.</p>
+        </div>
+
+        <div class="ngo-item">
+            <h3>ReFED</h3>
+            <p>ReFED specializes in food recovery from local grocery stores, redirecting unsold but still good food to food banks and other charitable organizations. Their programs also focus on creating awareness about food waste.</p>
+        </div>
+
+        <div class="ngo-item">
+            <h3>Feeding America</h3>
+            <p>Feeding America focuses on providing nutritious meals for homeless shelters by recovering surplus food from restaurants and grocery stores. They aim to reduce food waste and provide meals for those who are food insecure.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 Food Waste Platform. All rights reserved.</p>
+    <p>
+        <a href="#privacy" style="color: white;">Privacy Policy</a> | 
+        <a href="#terms" style="color: white;">Terms and Conditions</a> | 
+        <a href="#help" style="color: white;">Help Center</a>
+    </p>
+</footer>
+
+<script>
+    let currentIndex = 0;
+    const totalItems = document.querySelectorAll('.gallery-item').length;
+
+    function showItem(index) {
+        // Hide all items
+        const items = document.querySelectorAll('.gallery-item');
+        items.forEach(item => item.style.display = 'none');
+
+        // Show the current item
+        items[index].style.display = 'block';
+    }
+
+    function scrollGallery(direction) {
+        if (direction === 'left') {
+            currentIndex = (currentIndex === 0) ? totalItems - 1 : currentIndex - 1;
+        } else if (direction === 'right') {
+            currentIndex = (currentIndex === totalItems - 1) ? 0 : currentIndex + 1;
+        }
+
+        showItem(currentIndex);
+    }
+
+    // Initialize gallery with first item displayed
+    showItem(currentIndex);
+</script>
+
+</body>
+</html>

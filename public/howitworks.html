@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - Food Waste Reduction Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://info.ehl.edu/hubfs/Blog-EHL-Insights/Blog-Header-EHL-Insights/AdobeStock_264542845.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+        }
+        header {
+            background-color: rgba(1, 21, 2, 0.8);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .container {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #011502;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .social-links {
+            margin: 10px 0;
+        }
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .social-links a:hover {
+            text-decoration: underline;
+        }
+        .chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #ff9800;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+        .chatbot-icon {
+            color: white;
+            font-size: 24px;
+        }
+        .chatbot-popup {
+            display: none;
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 300px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+        }
+        .topics {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .topics button {
+            padding: 10px 15px;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 14px;
+        }
+        .topics button:hover {
+            background-color: #ff8000;
+        }
+        #topicDetails {
+            display: none;
+            margin-top: 20px;
+        }
+        #topicResponse {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Food Waste Reduction Platform</div>
+    <nav>
+        <ul>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="marketplace.html">Marketplace</a></li>
+            <li><a href="howitworks.html">How It Works</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+    <h1>How It Works</h1>
+
+    <div class="section">
+        <h2>1. Organizing Programs</h2>
+        <p>Our Food Waste Reduction Platform organizes various programs aimed at minimizing food waste and promoting sustainable practices. These programs include:</p>
+        <ul>
+            <li>Food Recovery Initiatives</li>
+            <li>Community Food Drives</li>
+            <li>Educational Workshops on Food Preservation</li>
+            <li>Partnerships with Local Food Banks and NGOs</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>2. Connecting to NGOs</h2>
+        <p>We collaborate with various NGOs that focus on food security and sustainability. Our platform connects these NGOs with local communities to:</p>
+        <ul>
+            <li>Facilitate food donations from businesses and individuals.</li>
+            <li>Provide resources and training on food waste reduction.</li>
+            <li>Implement community-based food recovery programs.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>3. Supplying Necessary Items</h2>
+        <p>To ensure effective food waste management, we supply necessary items such as:</p>
+        <ul>
+            <li>Food storage solutions to extend shelf life.</li>
+            <li>Composting bins for organic waste.</li>
+            <li>Educational materials on reducing food waste at home.</li>
+            <li>Mobile applications for tracking food inventory and expiration dates.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="chatbot" onclick="toggleChatbot()">
+    <div class="chatbot-icon">💬</div>
+</div>
+<div class="chatbot-popup" id="chatbotPopup">
+    <p>What would you like to know about?</p>
+    <div class="topics">
+        <button onclick="selectTopic('programs')">Programs</button>
+        <button onclick="selectTopic('ngos')">NGOs</button>
+        <button onclick="selectTopic('items')">Items</button>
+        <button onclick="selectTopic('join')">Join Us</button>
+        <button onclick="selectTopic('contact')">Contact</button>
+    </div>
+    <div id="topicDetails">
+        <p id="topicResponse"></p>
+        <button onclick="showTopics()">Back to Topics</button>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <p>&copy; 2025 Food Waste Reduction Platform. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://facebook.com/foodwastereduction" target="_blank">Facebook</a>
+            <a href="https://twitter.com/foodwastereduce" target="_blank">Twitter</a>
+            <a href="https://instagram.com/foodwastereduction" target="_blank">Instagram</a>
+        </div>
+        <p>Contact us: food123@gmail.com | 9000783333</p>
+    </div>
+</footer>
+
+<script>
+    let isChatbotOpen = false;
+    
+    const toggleChatbot = () => {
+        const popup = document.getElementById('chatbotPopup');
+        isChatbotOpen = !isChatbotOpen;
+        popup.style.display = isChatbotOpen ? 'block' : 'none';
+        document.querySelector('.chatbot').style.backgroundColor = isChatbotOpen ? '#ff8000' : '#ff9800';
+    };
+
+    const selectTopic = (topic) => {
+        document.querySelector('.topics').style.display = 'none';
+        document.getElementById('topicDetails').style.display = 'block';
+        
+        let response = "";
+        if (topic === 'programs') {
+            response = "We organize food recovery initiatives, community food drives, and educational workshops. Would you like to know more about any specific program?";
+        } else if (topic === 'ngos') {
+            response = "We collaborate with NGOs like Food Waste Reduction Alliance, ReFED, and Feeding America to facilitate food donations and provide training. Would you like their contact information?";
+        } else if (topic === 'items') {
+            response = "We provide food storage solutions, composting bins, and educational materials to help reduce waste. Let me know if you'd like details about any specific item.";
+        } else if (topic === 'join') {
+            response = "You can join our initiatives by visiting the 'Join Us' page or contacting us at food123@gmail.com.";
+        } else if (topic === 'contact') {
+            response = "You can reach us at:\nEmail: food123@gmail.com\nPhone: 9000783333\nAddress: Lakshmipura, Guntur.";
+        }
+        
+        document.getElementById('topicResponse').textContent = response;
+    };
+
+    const showTopics = () => {
+        document.querySelector('.topics').style.display = 'block';
+        document.getElementById('topicDetails').style.display = 'none';
+    };
+</script>
+
+</body>
+</html>
